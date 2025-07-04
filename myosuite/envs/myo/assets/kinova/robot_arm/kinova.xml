@@ -1,0 +1,23 @@
+<mujoco model="my_custom_scene">
+  <!-- Scene-wide settings -->
+  <compiler angle="radian" meshdir="assets"/>
+  <option integrator="implicitfast"/>
+
+  <!-- Load assets and defaults -->
+  <include file="gen3_assets.xml"/>
+  <include file="../../../../simhive/myo_sim/scene/myosuite_scene.xml"/>
+
+  <!-- World body -->
+  <worldbody>
+    <!-- Kinova Gen3 arm -->
+    <body name="gen3_base" pos="0 0 0">
+      <include file="gen3_body.xml"/>
+    </body>
+  </worldbody>
+
+  <!-- Actuators -->
+  <include file="gen3_actuator.xml"/>
+
+  <!-- Sensors, keyframes, etc -->
+  <include file="gen3_keyframes.xml"/>
+</mujoco>

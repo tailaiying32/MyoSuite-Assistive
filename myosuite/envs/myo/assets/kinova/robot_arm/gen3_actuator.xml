@@ -1,0 +1,10 @@
+<!-- gen3_actuator.xml -->
+<actuator>
+  <position class="large_actuator" name="joint_1" joint="joint_1"/>
+  <position class="large_actuator" name="joint_2" joint="joint_2" ctrlrange="-2.2497 2.2497"/>
+  <position class="large_actuator" name="joint_3" joint="joint_3"/>
+  <position class="large_actuator" name="joint_4" joint="joint_4" ctrlrange="-2.5796 2.5796"/>
+  <position class="small_actuator" name="joint_5" joint="joint_5"/>
+  <position class="small_actuator" name="joint_6" joint="joint_6" ctrlrange="-2.0996 2.0996"/>
+  <position class="small_actuator" name="joint_7" joint="joint_7"/>
+</actuator>
