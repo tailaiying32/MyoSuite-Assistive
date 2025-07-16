@@ -1,11 +1,10 @@
 <mujoco model="my_custom_scene">
   <!-- Scene-wide settings -->
-  <compiler angle="radian" meshdir="assets"/>
+  <compiler angle="radian"/>
   <option integrator="implicitfast"/>
 
   <!-- Load assets and defaults -->
-  <include file="../../../../../simhive/myo_sim/scene/myosuite_scene.xml"/>
-  <!-- <include file="test.xml"/> -->
+  <include file="../../../../../simhive/myo_sim/scene/myosuite_scene_kinova.xml"/>
   <include file="gen3_assets.xml"/>
 
   <!-- World body -->
