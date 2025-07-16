@@ -9,7 +9,7 @@ for ep in range(5):
     state = env.reset()[0]
     while True:
         action = policy(state)
-        # env.mj_render()
+        env.mj_render()
         next_state, reward, terminated, truncated, info = env.step(action)
         state = next_state
         if terminated or truncated:
