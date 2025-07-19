@@ -8,23 +8,23 @@
 ====================================================== -©vk©-->
     <!-- load texture and msh files -©vk©-->
 
-    <compiler angle="radian" meshdir="" texturedir=""/>
+    <compiler angle="radian" meshdir="../../myo_sim/scene" texturedir="../../myo_sim/scene"/>
     <asset>
         <!-- Scene -©vk©-->
-        <texture name="textscene" type="2d" file="../../../../simhive/myo_sim/scene/myosuite_scene.png"/>
+        <texture name="textscene" type="2d" file="../../../../../simhive/myo_sim/scene/myosuite_scene.png"/>
         <material name="matscene" texture="textscene"/>
-        <mesh name="meshscene" file="../../../../../simhive/myo_sim/scene/myosuite_scene_noFloor.msh" scale=".01 .01 .01"/>
+        <mesh name="meshscene" file="../../../../../../simhive/myo_sim/scene/myosuite_scene_noFloor.msh" scale=".01 .01 .01"/>
 
         <!-- Floor -©vk©-->
-        <texture name="texfloor" type="2d" height="1" width="1" file="../../../../simhive/myo_sim/scene/floor0.png"/>
+        <texture name="texfloor" type="2d" height="1" width="1" file="../../../../../simhive/myo_sim/scene/floor0.png"/>
         <material name="matfloor" reflectance="0.01" texture="texfloor" texrepeat="1 1" texuniform="true"/>
 
         <!-- Logo -©vk©-->
-        <texture name="textlogo" type="2d" file="../../../../simhive/myo_sim/scene/myosuite_logo.png"/>
-        <mesh name="logo" file="../../../../../simhive/myo_sim/scene/myosuite_logo.msh" scale="1 1 1"/>
+        <texture name="textlogo" type="2d" file="../../../../../simhive/myo_sim/scene/myosuite_logo.png"/>
+        <mesh name="logo" file="../../../../../../simhive/myo_sim/scene/myosuite_logo.msh" scale="1 1 1"/>
         <material name="matlogo" texture="textlogo"/>
 
-        <mesh name="human" file="../../../../../simhive/myo_sim/meshes/human_lowpoly.stl" scale="1 1 1"/>
+        <mesh name="human" file="../../../../../../simhive/myo_sim/meshes/human_lowpoly.stl" scale="1 1 1"/>
     </asset>
 
 <!-- hello? what's wrong with my git? -->

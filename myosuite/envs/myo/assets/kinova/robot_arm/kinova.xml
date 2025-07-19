@@ -4,7 +4,7 @@
   <option integrator="implicitfast"/>
 
   <!-- Load assets and defaults -->
-  <include file="../../../../../simhive/robot_arm_sim/myosuite_scene_kinova.xml"/>
+  <include file="../../../../../simhive/robot_arm_sim/scene/myosuite_scene_kinova.xml"/>
   <include file="gen3_assets.xml"/>
 
   <!-- World body -->
