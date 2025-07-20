@@ -5,6 +5,8 @@
 
   <!-- Load assets and defaults -->
   <include file="../../../../../simhive/robot_arm_sim/scene/myosuite_scene_kinova.xml"/>
+  <include file="arm_assets.xml"/>
+  <include file="../../../../../simhive/robot_arm_sim/arm/myoarm_assets_kinova.xml"/>
   <include file="gen3_assets.xml"/>
 
   <!-- World body -->
@@ -13,11 +15,16 @@
     <body name="gen3_base" pos="0 0 0">
       <include file="gen3_body.xml"/>
     </body>
+    <!-- MyoArm -->
+    <body name="myoarm" pos="1 0 0">
+      <include file="arm_body.xml"/>
+    </body>
   </worldbody>
 
   <!-- Actuators -->
   <include file="gen3_actuator.xml"/>
 
   <!-- Sensors, keyframes, etc -->
-  <include file="gen3_keyframes.xml"/>
+  <!-- <include file="gen3_keyframes.xml"/> -->
+  <!-- <include file="arm_keyframes.xml"/> -->
 </mujoco>

@@ -1,0 +1,10 @@
+<mujocoinclude>
+    <compiler meshdir='' texturedir=''/>
+    <asset>
+        <mesh file="../../../../../../simhive/myo_sim/meshes/human_lowpoly_norighthand.stl" name="body_norighthand"/>
+        <texture name="tabletop" type="2d" file="../../../../simhive/furniture_sim/common/textures/stone1.png"/>
+        <material name="tabletop" texture="tabletop" rgba=".95 .95 .95 1"/>
+        <texture name="texwood" type="cube" file="../../../../simhive/myo_sim/scene/floor0.png"/>
+        <material name="matwood" reflectance="0.01" texture="texwood" texuniform="false"/>
+    </asset>
+</mujocoinclude>
