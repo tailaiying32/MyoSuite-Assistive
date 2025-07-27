@@ -32,3 +32,4 @@ class Kinova(MujocoEnv):
     def render(self):
         self.mj_render()
 
+# test?
