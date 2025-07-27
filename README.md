@@ -14,8 +14,7 @@ Authors  :: Vikash Kumar (vikashplus@gmail.com), Vittorio Caggiano (caggiano@gma
 [![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)](https://join.slack.com/t/myosuite/shared_invite/zt-1zkpw2zzk-NhVhVlSDxhoMHbzROD8gMA)
 [![Twitter Follow](https://img.shields.io/twitter/follow/MyoSuite?style=social)](https://twitter.com/MyoSuite)
 
-# Built off of MyoSuite for research purposes
-All environment setup and assets are under 'myosuite/envs/myo/assets/kinova/robot_arm'. Environment and RL logic is found under 'myosuite/envs/myo/kinova_env.py'.
+All custom environment setup and assets are under 'myosuite/envs/myo/assets/kinova/robot_arm'. Environment and RL logic is found under 'myosuite/envs/myo/kinova_env.py'.
 
 `MyoSuite` is a collection of musculoskeletal environments and tasks simulated with the [MuJoCo](http://www.mujoco.org/) physics engine and wrapped in the OpenAI ``gym`` API to enable the application of Machine Learning to bio-mechanic control problems.
 
