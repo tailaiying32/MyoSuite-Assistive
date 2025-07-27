@@ -1,0 +1,10 @@
+<mujocoinclude>
+  <actuator>
+    <motor name="finger_joint" joint="finger_joint" ctrllimited="true" ctrlrange="-1 1" gear="1" />
+    <motor name="left_inner_knuckle_joint" joint="left_inner_knuckle_joint" ctrllimited="true" ctrlrange="-1 1" gear="1" />
+    <motor name="left_inner_finger_joint" joint="left_inner_finger_joint" ctrllimited="true" ctrlrange="-1 1" gear="1" />
+    <motor name="right_inner_knuckle_joint" joint="right_inner_knuckle_joint" ctrllimited="true" ctrlrange="-1 1" gear="1" />
+    <motor name="right_inner_finger_joint" joint="right_inner_finger_joint" ctrllimited="true" ctrlrange="-1 1" gear="1" />
+    <motor name="right_outer_knuckle_joint" joint="right_outer_knuckle_joint" ctrllimited="true" ctrlrange="-1 1" gear="1" />
+  </actuator>
+</mujocoinclude>

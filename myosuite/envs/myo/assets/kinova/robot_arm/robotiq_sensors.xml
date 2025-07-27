@@ -1,0 +1,24 @@
+<mujocoinclude>
+    <sensor>
+    <actuatorpos name="finger_joint_p" actuator="finger_joint" />
+    <actuatorvel name="finger_joint_v" actuator="finger_joint" />
+    <actuatorfrc name="finger_joint_f" actuator="finger_joint" noise="0.001" />
+    <actuatorpos name="left_inner_knuckle_joint_p" actuator="left_inner_knuckle_joint" />
+    <actuatorvel name="left_inner_knuckle_joint_v" actuator="left_inner_knuckle_joint" />
+    <actuatorfrc name="left_inner_knuckle_joint_f" actuator="left_inner_knuckle_joint" noise="0.001" />
+    <actuatorpos name="left_inner_finger_joint_p" actuator="left_inner_finger_joint" />
+    <actuatorvel name="left_inner_finger_joint_v" actuator="left_inner_finger_joint" />
+    <actuatorfrc name="left_inner_finger_joint_f" actuator="left_inner_finger_joint" noise="0.001" />
+    <actuatorpos name="right_inner_knuckle_joint_p" actuator="right_inner_knuckle_joint" />
+    <actuatorvel name="right_inner_knuckle_joint_v" actuator="right_inner_knuckle_joint" />
+    <actuatorfrc name="right_inner_knuckle_joint_f" actuator="right_inner_knuckle_joint" noise="0.001" />
+    <actuatorpos name="right_inner_finger_joint_p" actuator="right_inner_finger_joint" />
+    <actuatorvel name="right_inner_finger_joint_v" actuator="right_inner_finger_joint" />
+    <actuatorfrc name="right_inner_finger_joint_f" actuator="right_inner_finger_joint" noise="0.001" />
+    <actuatorpos name="right_outer_knuckle_joint_p" actuator="right_outer_knuckle_joint" />
+    <actuatorvel name="right_outer_knuckle_joint_v" actuator="right_outer_knuckle_joint" />
+    <actuatorfrc name="right_outer_knuckle_joint_f" actuator="right_outer_knuckle_joint" noise="0.001" />
+    <framequat name="orientation" objtype="site" noise="0.001" objname="imu" />
+    <gyro name="angular-velocity" site="imu" noise="0.005" cutoff="34.9" />
+  </sensor>
+</mujocoinclude>

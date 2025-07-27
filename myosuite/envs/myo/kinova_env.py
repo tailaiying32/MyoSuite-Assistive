@@ -13,9 +13,12 @@ class Kinova(MujocoEnv):
             weighted_reward_keys={},
         )
 
+
     def get_obs_dict(self, sim):
         return {
-            "time": np.array([sim.data.time]), 
+            "time": np.array([sim.data.time]),
+            "qpos" : sim.data.qpos.copy(),
+            "qvel" : sim.data.qvel.copy()
         }
 
     def get_reward_dict(self, obs_dict):

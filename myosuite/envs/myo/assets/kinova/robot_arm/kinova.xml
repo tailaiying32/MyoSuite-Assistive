@@ -8,23 +8,63 @@
   <include file="arm_assets.xml"/>
   <include file="../../../../../simhive/robot_arm_sim/arm/myoarm_assets_kinova.xml"/>
   <include file="gen3_assets.xml"/>
+  <include file="robotiq_assets.xml"/>
+  
+
+  <asset>
+
+  </asset>
 
   <!-- World body -->
   <worldbody>
-    <!-- Kinova Gen3 arm -->
-    <body name="gen3_base" pos="0 0 0">
-      <include file="gen3_body.xml"/>
+    <body name="robot" pos="0 0 0">
+      <!-- wheelchair just a cube cause i can't find any wheelchair models lmao -->
+      <geom name="wheelchair" type="box" size="0.3 0.3 0.3" pos="0 0 0.25" rgba="0 0 0 1"/>
+      <!-- Kinova Gen3 arm -->
+      <body name="robot_arm_gripper" pos="0 0 0.5">
+        <body name="gen3_base" pos="0 0 0">
+          <include file="gen3_body.xml"/>
+        </body>
+      </body>
+
     </body>
+
     <!-- MyoArm -->
-    <body name="myoarm" pos="1 0 0">
+    <body name="myoarm" pos="1.2 0 0" axisangle="0 0 1 -1.5708">
       <include file="arm_body.xml"/>
     </body>
+
+    <body name="table" pos="0.7 0 0" axisangle="0 0 1 1.5708">
+      <include file="simpleWoodTable_body.xml"/>
+    </body>
+
+    
   </worldbody>
 
   <!-- Actuators -->
   <include file="gen3_actuator.xml"/>
+  <include file="robotiq_actuators.xml"/>
 
   <!-- Sensors, keyframes, etc -->
+  <include file="robotiq_sensors.xml"/>
   <!-- <include file="gen3_keyframes.xml"/> -->
   <!-- <include file="arm_keyframes.xml"/> -->
 </mujoco>
+
+<!-- <worldbody>
+  <!-- Base of the robot arm -->
+  <body name="base" pos="0 0 0">
+    <!-- Rectangular prism arm -->
+    <geom name="arm" type="box" size="0.05 0.05 0.3" rgba="0.3 0.3 0.8 1"/>
+
+    <!-- Add a joint so the arm can move (e.g., rotate) -->
+    <joint name="arm_joint" type="hinge" axis="0 0 1" limited="false"/>
+
+    <!-- Gripper (pyramid) attached at the tip of the arm -->
+    <body name="gripper" pos="0 0 0.3">
+      <geom name="pyramid" type="mesh" mesh="pyramid_mesh" rgba="0.8 0.2 0.2 1"/>
+    </body>
+  </body>
+</worldbody> -->
+
+# robotiq 2f-85
