@@ -1,26 +1,58 @@
 <mujocoinclude>
-  <option iterations="50" timestep="0.001" solver="PGS" gravity="0 0 -9.81" />
+  <compiler angle="radian" meshdir="assets" autolimits="true"/>
 
-  <compiler angle="radian" meshdir="assets" eulerseq="zyx" autolimits="true" />
+  <option cone="elliptic" impratio="10"/>
+
+  <asset>
+    <material name="metal" rgba="0.58 0.58 0.58 1"/>
+    <material name="silicone" rgba="0.1882 0.1882 0.1882 1"/>
+    <material name="gray" rgba="0.4627 0.4627 0.4627 1"/>
+    <material name="black" rgba="0.149 0.149 0.149 1"/>
+
+    <mesh class="2f85" file="base_mount.stl"/>
+    <mesh class="2f85" file="base.stl"/>
+    <mesh class="2f85" file="driver.stl"/>
+    <mesh class="2f85" file="coupler.stl"/>
+    <mesh class="2f85" file="follower.stl"/>
+    <mesh class="2f85" file="pad.stl"/>
+    <mesh class="2f85" file="silicone_pad.stl"/>
+    <mesh class="2f85" file="spring_link.stl"/>
+  </asset>
 
   <default>
-    <joint limited="true" damping="0.01" armature="0.01" frictionloss="0.01" />
-    <geom condim="4" contype="1" conaffinity="15" friction="0.9 0.2 0.2" solref="0.001 2" />
-    <motor ctrllimited="true" />
-    <equality solref="0.001 2" />
-    <default class="visualgeom">
-      <geom material="visualgeom" condim="1" contype="0" conaffinity="0" />
+    <default class="2f85">
+      <mesh scale="0.001 0.001 0.001"/>
+      <general biastype="affine"/>
+
+      <joint axis="1 0 0"/>
+      <default class="driver">
+        <joint range="0 0.8" armature="0.005" damping="0.1" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1"/>
+      </default>
+      <default class="follower">
+        <joint range="-0.872664 0.872664" armature="0.001" pos="0 -0.018 0.0065" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1"/>
+      </default>
+      <default class="spring_link">
+        <joint range="-0.29670597283 0.8" armature="0.001" stiffness="0.05" springref="2.62" damping="0.00125"/>
+      </default>
+      <default class="coupler">
+        <joint range="-1.57 0" armature="0.001" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1"/>
+      </default>
+
+      <default class="robotiq_visual">
+        <geom type="mesh" contype="0" conaffinity="0" group="2"/>
+      </default>
+      <default class="robotiq_collision">
+        <geom type="mesh" group="3"/>
+        <default class="pad_box1">
+          <geom mass="0" type="box" pos="0 -0.0026 0.028125" size="0.011 0.004 0.009375" friction="0.7"
+            solimp="0.95 0.99 0.001" solref="0.004 1" priority="1" rgba="0.55 0.55 0.55 1"/>
+        </default>
+        <default class="pad_box2">
+          <geom mass="0" type="box" pos="0 -0.0026 0.009375" size="0.011 0.004 0.009375" friction="0.6"
+            solimp="0.95 0.99 0.001" solref="0.004 1" priority="1" rgba="0.45 0.45 0.45 1"/>
+        </default>
+      </default>
     </default>
   </default>
-  
-  <asset>
-    <mesh name="robotiq_85_base_link_coarse" file="robotiq_85_base_link_coarse.STL" />
-    <mesh name="outer_knuckle_coarse" file="outer_knuckle_coarse.STL" />
-    <mesh name="outer_finger_coarse" file="outer_finger_coarse.STL" />
-    <mesh name="inner_knuckle_coarse" file="inner_knuckle_coarse.STL" />
-    <mesh name="inner_finger_coarse" file="inner_finger_coarse.STL" />
-    <texture name="texplane_gripper" type="2d" builtin="checker" rgb1=".0 .0 .0" rgb2=".8 .8 .8" width="100" height="100" />
-    <material name="matplane" reflectance="0." texture="texplane_gripper" texrepeat="1 1" texuniform="true" />
-    <material name="visualgeom" rgba="0.5 0.9 0.2 1" />
-  </asset>
+
 </mujocoinclude>
