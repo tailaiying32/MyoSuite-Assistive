@@ -1,10 +1,6 @@
 <mujocoinclude>
   <actuator>
-    <motor name="finger_joint" joint="finger_joint" ctrllimited="true" ctrlrange="-1 1" gear="1" />
-    <motor name="left_inner_knuckle_joint" joint="left_inner_knuckle_joint" ctrllimited="true" ctrlrange="-1 1" gear="1" />
-    <motor name="left_inner_finger_joint" joint="left_inner_finger_joint" ctrllimited="true" ctrlrange="-1 1" gear="1" />
-    <motor name="right_inner_knuckle_joint" joint="right_inner_knuckle_joint" ctrllimited="true" ctrlrange="-1 1" gear="1" />
-    <motor name="right_inner_finger_joint" joint="right_inner_finger_joint" ctrllimited="true" ctrlrange="-1 1" gear="1" />
-    <motor name="right_outer_knuckle_joint" joint="right_outer_knuckle_joint" ctrllimited="true" ctrlrange="-1 1" gear="1" />
+    <general class="2f85" name="fingers_actuator" tendon="split" forcerange="-5 5" ctrlrange="0 255"
+      gainprm="0.3137255 0 0" biasprm="0 -100 -10"/>
   </actuator>
 </mujocoinclude>

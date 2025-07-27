@@ -45,26 +45,13 @@
   <include file="gen3_actuator.xml"/>
   <include file="robotiq_actuators.xml"/>
 
-  <!-- Sensors, keyframes, etc -->
-  <include file="robotiq_sensors.xml"/>
-  <!-- <include file="gen3_keyframes.xml"/> -->
-  <!-- <include file="arm_keyframes.xml"/> -->
+  <!-- miscellaneous stuff -->
+  <include file="robotiq_tendon.xml"/>
+  <include file="robotiq_contact.xml"/>
+  <include file="robotiq_equality.xml"/>
+
+  <!-- keyframes -->
+  <!-- <include file="gen3_keyframes.xml"/>
+  <include file="arm_keyframes.xml"/> -->
+
 </mujoco>
-
-<!-- <worldbody>
-  <!-- Base of the robot arm -->
-  <body name="base" pos="0 0 0">
-    <!-- Rectangular prism arm -->
-    <geom name="arm" type="box" size="0.05 0.05 0.3" rgba="0.3 0.3 0.8 1"/>
-
-    <!-- Add a joint so the arm can move (e.g., rotate) -->
-    <joint name="arm_joint" type="hinge" axis="0 0 1" limited="false"/>
-
-    <!-- Gripper (pyramid) attached at the tip of the arm -->
-    <body name="gripper" pos="0 0 0.3">
-      <geom name="pyramid" type="mesh" mesh="pyramid_mesh" rgba="0.8 0.2 0.2 1"/>
-    </body>
-  </body>
-</worldbody> -->
-
-# robotiq 2f-85
