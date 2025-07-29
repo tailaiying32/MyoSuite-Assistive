@@ -34,10 +34,16 @@
       <include file="arm_body.xml"/>
     </body>
 
+    <!-- table -->
     <body name="table" pos="0.7 0 0" axisangle="0 0 1 1.5708">
       <include file="simpleWoodTable_body.xml"/>
     </body>
 
+    <!-- cube -->
+    <body name="cube" pos="0.7 0 0.8">
+      <geom name="cube_geom" type="box" size="0.025 0.025 0.025" rgba="1 0 0 1" mass="0.1"/>
+      <site name="cube_site" pos="0 0 0" rgba="1 0 0 0.3" size="0.03"/>
+    </body>
     
   </worldbody>
 
@@ -51,7 +57,7 @@
   <include file="robotiq_equality.xml"/>
 
   <!-- keyframes -->
-  <!-- <include file="gen3_keyframes.xml"/>
-  <include file="arm_keyframes.xml"/> -->
+  <!-- <include file="keyframes.xml"/> -->
+
 <!-- testing....... -->
 </mujoco>
