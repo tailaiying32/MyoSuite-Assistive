@@ -75,7 +75,7 @@ class Kinova(BaseV0):
         obs_dict['cube_pos'] = sim.data.body_xpos[sim.model.body_name2id('cube')].copy()
         obs_dict['reach_err'] = obs_dict['gripper_pos'] - obs_dict['cube_pos']
 
-        print(sim.data.body_xpos[sim.model.body_name2id('cube')].copy())
+        # print(sim.data.body_xpos[sim.model.body_name2id('cube')].copy())
 
         return obs_dict
 

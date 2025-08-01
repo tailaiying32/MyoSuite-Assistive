@@ -3,7 +3,7 @@ from myosuite.utils import gym
 from stable_baselines3.common.callbacks import BaseCallback
 from tqdm import tqdm
 
-TOTAL_TIMESTEPS = 1000
+TOTAL_TIMESTEPS = 100000
 
 class TqdmCallback(BaseCallback):
     def __init__(self, total_timesteps, verbose=0):

@@ -4,9 +4,9 @@
   <option integrator="implicitfast"/>
 
   <!-- Load assets and defaults -->
-  <include file="../../../../../simhive/robot_arm_sim/scene/myosuite_scene_kinova.xml"/>
-  <include file="arm_assets.xml"/>
-  <include file="../../../../../simhive/robot_arm_sim/arm/myoarm_assets_kinova.xml"/>
+  <!-- <include file="../../../../../simhive/robot_arm_sim/scene/myosuite_scene_kinova.xml"/> -->
+  <!-- <include file="arm_assets.xml"/> -->
+  <!-- <include file="../../../../../simhive/robot_arm_sim/arm/myoarm_assets_kinova.xml"/> -->
   <include file="gen3_assets.xml"/>
   <include file="robotiq_assets.xml"/>
   
@@ -30,9 +30,9 @@
     </body>
 
     <!-- MyoArm -->
-    <body name="myoarm" pos="1.2 0 0" axisangle="0 0 1 -1.5708">
+    <!-- <body name="myoarm" pos="1.2 0 0" axisangle="0 0 1 -1.5708">
       <include file="arm_body.xml"/>
-    </body>
+    </body> -->
 
     <!-- table -->
     <body name="table" pos="0.7 0 0" axisangle="0 0 1 1.5708">
