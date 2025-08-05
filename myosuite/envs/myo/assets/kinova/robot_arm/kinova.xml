@@ -4,11 +4,11 @@
   <option integrator="implicitfast"/>
 
   <!-- Load assets and defaults -->
-  <!-- <include file="../../../../../simhive/robot_arm_sim/scene/myosuite_scene_kinova.xml"/> -->
-  <!-- <include file="arm_assets.xml"/> -->
-  <!-- <include file="../../../../../simhive/robot_arm_sim/arm/myoarm_assets_kinova.xml"/> -->
-  <include file="gen3_assets.xml"/>
-  <include file="robotiq_assets.xml"/>
+  <include file="../../../../../simhive/robot_arm_sim/scene/myosuite_scene_kinova.xml"/>
+  <include file="arm_assets.xml"/>
+  <include file="../../../../../simhive/robot_arm_sim/arm/myoarm_assets_kinova.xml"/>
+  <!-- <include file="gen3_assets.xml"/>
+  <include file="robotiq_assets.xml"/> -->
   
 
   <asset>
@@ -17,22 +17,19 @@
 
   <!-- World body -->
   <worldbody>
-    <body name="robot" pos="0 0 0">
-      <!-- wheelchair just a cube cause i can't find any wheelchair models lmao -->
+    <!-- <body name="robot" pos="0 0 0">
       <geom name="wheelchair" type="box" size="0.3 0.3 0.3" pos="0 0 0.25" rgba="0 0 0 1"/>
-      <!-- Kinova Gen3 arm -->
       <body name="robot_arm_gripper" pos="0 0 0.5">
         <body name="gen3_base" pos="0 0 0">
           <include file="gen3_body.xml"/>
         </body>
       </body>
-
-    </body>
+    </body> -->
 
     <!-- MyoArm -->
-    <!-- <body name="myoarm" pos="1.2 0 0" axisangle="0 0 1 -1.5708">
+    <body name="myoarm" pos="1.2 0 0" axisangle="0 0 1 -1.5708">
       <include file="arm_body.xml"/>
-    </body> -->
+    </body>
 
     <!-- table -->
     <body name="table" pos="0.7 0 0" axisangle="0 0 1 1.5708">
@@ -40,21 +37,21 @@
     </body>
 
     <!-- cube -->
-    <body name="cube" pos="0.7 0 0.8">
+    <!-- <body name="cube" pos="0.7 0 0.8">
       <geom name="cube_geom" type="box" size="0.025 0.025 0.025" rgba="1 0 0 1" mass="0.1"/>
       <site name="cube_site" pos="0 0 0" rgba="1 0 0 0.3" size="0.03"/>
-    </body>
+    </body> -->
     
   </worldbody>
 
   <!-- Actuators -->
-  <include file="gen3_actuator.xml"/>
-  <include file="robotiq_actuators.xml"/>
+  <!-- <include file="gen3_actuator.xml"/>
+  <include file="robotiq_actuators.xml"/> -->
 
   <!-- miscellaneous stuff -->
-  <include file="robotiq_tendon.xml"/>
+  <!-- <include file="robotiq_tendon.xml"/>
   <include file="robotiq_contact.xml"/>
-  <include file="robotiq_equality.xml"/>
+  <include file="robotiq_equality.xml"/> -->
 
   <!-- keyframes -->
   <!-- <include file="keyframes.xml"/> -->
