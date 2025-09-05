@@ -3,14 +3,10 @@ import collections
 from myosuite.envs.myo.base_v0 import BaseV0
 from myosuite.utils import gym; register=gym.register
 import numpy as np
-import wandb
 
 
 class KinovaArm(BaseV0):
-    # Include all keys that will appear in obs_dict every step so the
-    # flattened observation size is constant across reset/steps & workers.
-    # Order here defines concatenation order in BaseV0/ObsVecDict.
-    DEFAULT_OBS_KEYS = ['qpos', 'qvel', 'desired_goal', 'achieved_goal', 'act', 'time']
+    DEFAULT_OBS_KEYS = ['qpos', 'qvel', 'time']
     DEFAULT_RWD_KEYS_AND_WEIGHTS = {
         "sparse": 1.0,
         "dense": 1.0,
@@ -21,6 +17,8 @@ class KinovaArm(BaseV0):
 
         if model_path is None:
             model_path = os.path.join("myosuite", "envs", "myo", "assets", "kinova", "robot_arm", "kinova.xml")
+
+        self.goal = self.sample_goal()
 
         
         # two step construction is required for pickling to work correctly idk what that means but it's required
@@ -51,41 +49,31 @@ class KinovaArm(BaseV0):
 
 
     def reset(self, seed=None, options=None):
-        np.random.seed(seed)
+        if seed is not None:
+            self.seed(seed)
 
         self.goal = self.sample_goal()
         return super().reset()
 
     def sample_goal(self):
         # sample a reachable 3D target in action space
-        self.sim.model.body_pos[self.sim.model.body_name2id("cube")] = np.random.uniform(low=[0.7, -0.4, 0.7], high=[2.0, 0.75, 2.0])
-        return self.sim.model.body_pos[self.sim.model.body_name2id("cube")]
-
+        return np.random.uniform(low=[0.9, 0, 1.8], high=[0.9, 0, 1.8])
 
     def get_achieved_goal(self):
         # return palm site
-        return self.sim.data.body_xpos[self.sim.model.body_name2id('firstmc')].copy() 
+        return self.sim.data.site_xpos[self.sim.model.site_name2id('S_grasp')].copy() 
 
     def get_obs_dict(self, sim):
         obs_dict = {}
-        # core kinematics
+        obs_dict["time"] = np.array([sim.data.time])
         obs_dict["qpos"] = sim.data.qpos[:].copy()
         obs_dict["qvel"] = sim.data.qvel[:].copy() * self.dt
- 
-        # ensure goal exists
-        if not hasattr(self, "goal"):
-            self.goal = self.sample_goal()
-        obs_dict["desired_goal"] = self.goal.copy()
-        obs_dict["achieved_goal"] = self.get_achieved_goal()
-
-        # actions (always include for consistent shape; zeros if no actuators)
         if sim.model.na > 0:
             obs_dict["act"] = sim.data.act[:].copy()
-        else:
-            obs_dict["act"] = np.zeros(0, dtype=np.float32)
 
-        # timestamp last (order controlled by DEFAULT_OBS_KEYS anyway)
-        obs_dict["time"] = np.array([sim.data.time])
+        # goal-conditioned additions
+        obs_dict["desired_goal"] = self.goal.copy()
+        obs_dict["achieved_goal"] = self.get_achieved_goal()
         return obs_dict
 
     def get_reward_dict(self, obs_dict):   
@@ -95,9 +83,8 @@ class KinovaArm(BaseV0):
             ('dense', -reach_dist),  
             ('sparse', 1.0 if reach_dist < 0.05 else 0.0),        
             ('solved', float(reach_dist < 0.05)),      
-            ('done', float(reach_dist < 0.05)), 
+            ('done', 0.0), 
         ))
-        
         return rwd_dict
 
     # render environment    

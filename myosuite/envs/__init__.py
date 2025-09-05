@@ -10,7 +10,7 @@ register(id='Kinova-v0',
 
 register(id='Kinova-v1',
         entry_point='myosuite.envs.myo.kinova_arm_env:KinovaArm',
-        max_episode_steps=500,
+        max_episode_steps=200,
         kwargs={
             'model_path': curr_dir+'/myo/assets/kinova/robot_arm/kinova.xml',
             # 'normalize_act': True,

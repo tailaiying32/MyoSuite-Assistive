@@ -37,7 +37,7 @@
     </body>
 
     <!-- cube -->
-    <body name="cube" pos="0.7 0 0.8">
+    <body name="cube" pos="0.9 0 1.8">
       <geom name="cube_geom" type="box" size="0.025 0.025 0.025" rgba="1 0 0 1" mass="0.1"/>
       <site name="cube_site" pos="0 0 0" rgba="1 0 0 0.3" size="0.03"/>
     </body>
