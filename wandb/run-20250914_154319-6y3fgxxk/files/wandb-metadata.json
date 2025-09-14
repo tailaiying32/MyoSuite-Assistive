@@ -1,0 +1,122 @@
+{
+    "os": "Linux-5.4.0-208-generic-x86_64-with-glibc2.31",
+    "python": "3.10.0",
+    "heartbeatAt": "2025-09-14T19:43:19.585667",
+    "startedAt": "2025-09-14T19:43:19.147251",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--path",
+        "baselines_DEPRL/Reach/250911.112747/log.csv"
+    ],
+    "state": "running",
+    "program": "-m deprl.log",
+    "codePathLocal": null,
+    "git": {
+        "remote": "https://github.com/tailaiying32/MyoSuite-Assistive.git",
+        "commit": "83ca0ad85a59ab8d275207ee70a13cd35a63a5ae"
+    },
+    "email": null,
+    "root": "/home/tty6/MyoSuite-Assistive",
+    "host": "g2-login-01.coecis.cornell.edu",
+    "username": "tty6",
+    "executable": "/home/tty6/.conda/envs/myosuite/bin/python",
+    "cpu_count": 16,
+    "cpu_count_logical": 16,
+    "cpu_freq": {
+        "current": 2593.9049999999997,
+        "min": 0.0,
+        "max": 0.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2593.905,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2593.905,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2593.905,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2593.905,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2593.905,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2593.905,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2593.905,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2593.905,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2593.905,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2593.905,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2593.905,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2593.905,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2593.905,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2593.905,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2593.905,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2593.905,
+            "min": 0.0,
+            "max": 0.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 80.08685302734375,
+            "used": 65.30455780029297
+        }
+    },
+    "memory": {
+        "total": 62.79521560668945
+    }
+}
