@@ -3,6 +3,8 @@ import collections
 from myosuite.envs.myo.base_v0 import BaseV0
 from myosuite.utils import gym; register=gym.register
 import numpy as np
+import hydra
+from omegaconf import DictConfig, OmegaConf
 
 
 class KinovaArm(BaseV0):
@@ -12,13 +14,14 @@ class KinovaArm(BaseV0):
         "dense": 1.0,
     }
 
-    def __init__(self, model_path=None, obsd_model_path=None, seed=None, **kwargs):
+    def __init__(self, model_path=None, obsd_model_path=None, seed=None, cfg={}, **kwargs):
         gym.utils.EzPickle.__init__(self, model_path, obsd_model_path, seed, **kwargs)
 
         if model_path is None:
             model_path = os.path.join("myosuite", "envs", "myo", "assets", "kinova", "robot_arm", "kinova.xml")
 
         self.goal = self.sample_goal()
+        self.cfg = cfg
 
         
         # two step construction is required for pickling to work correctly idk what that means but it's required
@@ -77,7 +80,8 @@ class KinovaArm(BaseV0):
         return obs_dict
 
     def get_reward_dict(self, obs_dict):   
-        reach_dist = np.linalg.norm(obs_dict["achieved_goal"] - obs_dict["desired_goal"])
+        reach_dist = np.linalg.norm(obs_dict["achieved_goal"] - obs_dict["desired_goal"]) ** self.cfg["reward"]["reward_scale"]
+
         rwd_dict = collections.OrderedDict((
             ('reach_dist', -reach_dist),
             ('dense', -reach_dist),  

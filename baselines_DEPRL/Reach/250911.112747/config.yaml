@@ -21,14 +21,14 @@ tonic:
   before_training: ''
   checkpoint: last
   environment: deprl.environments.Gym('Kinova-v1', scaled_actions=False)
-  environment_name: deprl_reach
+  environment_name: deprl_baseline_reach
   full_save: 1
   header: import deprl, myosuite; from myosuite.utils import gym
   name: Reach
-  parallel: 14
+  parallel: 20
   resume: 0
   seed: 0
-  sequential: 1
+  sequential: 10
   test_environment: null
   trainer: deprl.custom_trainer.Trainer(steps=int(1e8), epoch_steps=int(2e5), save_steps=int(1e6))
-working_dir: ./robot_arm
+working_dir: ./baselines_DEPRL
