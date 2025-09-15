@@ -12,7 +12,7 @@ def main(cfg: DictConfig):
     env = KinovaArm(cfg=config, model_path=model_path)
     print(json.dumps(env.cfg, indent=2))
     # Optionally, check a specific value
-    assert env.cfg["reward"]["reward_scale"] == config["reward"]["reward_scale"]
+    assert env.cfg["env_parameters"]["reward_scale"] == config["env_parameters"]["reward_scale"]
 
 if __name__ == "__main__":
     main()

@@ -124,3 +124,7 @@ osl.log
 /workspace
 
 *processed.xml
+
+robot_arm/logs
+baselines_DEPRL/
+multirun/

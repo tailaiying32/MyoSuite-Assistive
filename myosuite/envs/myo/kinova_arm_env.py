@@ -15,13 +15,14 @@ class KinovaArm(BaseV0):
     }
 
     def __init__(self, model_path=None, obsd_model_path=None, seed=None, cfg={}, **kwargs):
-        gym.utils.EzPickle.__init__(self, model_path, obsd_model_path, seed, **kwargs)
+        gym.utils.EzPickle.__init__(self, model_path, obsd_model_path, seed, cfg, **kwargs)
 
         if model_path is None:
             model_path = os.path.join("myosuite", "envs", "myo", "assets", "kinova", "robot_arm", "kinova.xml")
 
-        self.goal = self.sample_goal()
         self.cfg = cfg
+        print(self.cfg)
+        self.goal = self.sample_goal()
 
         
         # two step construction is required for pickling to work correctly idk what that means but it's required
@@ -60,7 +61,8 @@ class KinovaArm(BaseV0):
 
     def sample_goal(self):
         # sample a reachable 3D target in action space
-        return np.random.uniform(low=[0.9, 0, 1.8], high=[0.9, 0, 1.8])
+        # return np.random.uniform(low=[0.9, 0, 1.8], high=[0.9, 0, 1.8])
+        return np.array(self.cfg["env_parameters"]["goal"])
 
     def get_achieved_goal(self):
         # return palm site
@@ -80,7 +82,7 @@ class KinovaArm(BaseV0):
         return obs_dict
 
     def get_reward_dict(self, obs_dict):   
-        reach_dist = np.linalg.norm(obs_dict["achieved_goal"] - obs_dict["desired_goal"]) ** self.cfg["reward"]["reward_scale"]
+        reach_dist = np.linalg.norm(obs_dict["achieved_goal"] - obs_dict["desired_goal"]) ** self.cfg["env_parameters"]["reward_scale"]
 
         rwd_dict = collections.OrderedDict((
             ('reach_dist', -reach_dist),

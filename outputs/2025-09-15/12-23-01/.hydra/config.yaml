@@ -1,4 +1,3 @@
-# srun -n 5 --mem=5g --gres=gpu:1 --pty /bin/bash
 DEP:
   bias_rate: 0.002
   buffer_size: 200
@@ -15,11 +14,9 @@ DEP:
   time_dist: 5
   with_learning: true
 env_args: {}
-
 env_parameters:
   reward_scale: 1.0
-  goal: [0.9, 0, 1.8]
-
+  goal: []
 tonic:
   after_training: ''
   agent: deprl.custom_agents.dep_factory(3, deprl.custom_mpo_torch.TunedMPO())(replay=deprl.replays.buffers.Buffer(return_steps=3,
