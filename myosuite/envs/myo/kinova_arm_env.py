@@ -3,8 +3,7 @@ import collections
 from myosuite.envs.myo.base_v0 import BaseV0
 from myosuite.utils import gym; register=gym.register
 import numpy as np
-import hydra
-from omegaconf import DictConfig, OmegaConf
+import yaml
 
 
 class KinovaArm(BaseV0):
@@ -14,13 +13,18 @@ class KinovaArm(BaseV0):
         "dense": 1.0,
     }
 
-    def __init__(self, model_path=None, obsd_model_path=None, seed=None, cfg={}, **kwargs):
-        gym.utils.EzPickle.__init__(self, model_path, obsd_model_path, seed, cfg, **kwargs)
+    def __init__(self, model_path=None, obsd_model_path=None, seed=None, cfg='', **kwargs):
+        with open(cfg, 'r') as f:
+            config = yaml.safe_load(f)
+        gym.utils.EzPickle.__init__(self, model_path, obsd_model_path, seed, config, **kwargs)
+
+        print(model_path)
 
         if model_path is None:
             model_path = os.path.join("myosuite", "envs", "myo", "assets", "kinova", "robot_arm", "kinova.xml")
 
-        self.cfg = cfg
+        print("==================")
+        self.cfg = config
         print(self.cfg)
         self.goal = self.sample_goal()
 
@@ -62,7 +66,7 @@ class KinovaArm(BaseV0):
     def sample_goal(self):
         # sample a reachable 3D target in action space
         # return np.random.uniform(low=[0.9, 0, 1.8], high=[0.9, 0, 1.8])
-        return np.array(self.cfg["env_parameters"]["goal"])
+        return np.array(self.cfg["goal"])
 
     def get_achieved_goal(self):
         # return palm site
@@ -82,7 +86,7 @@ class KinovaArm(BaseV0):
         return obs_dict
 
     def get_reward_dict(self, obs_dict):   
-        reach_dist = np.linalg.norm(obs_dict["achieved_goal"] - obs_dict["desired_goal"]) ** self.cfg["env_parameters"]["reward_scale"]
+        reach_dist = np.linalg.norm(obs_dict["achieved_goal"] - obs_dict["desired_goal"]) ** self.cfg["reward_scale"]
 
         rwd_dict = collections.OrderedDict((
             ('reach_dist', -reach_dist),
