@@ -1,2 +1,2 @@
-reward_scale: 1.0
+reward_scale: 2.0
 goal: [0.9, 0, 1.8]

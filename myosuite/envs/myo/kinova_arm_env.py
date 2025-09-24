@@ -13,19 +13,24 @@ class KinovaArm(BaseV0):
         "dense": 1.0,
     }
 
-    def __init__(self, model_path=None, obsd_model_path=None, seed=None, cfg='', **kwargs):
-        with open(cfg, 'r') as f:
-            config = yaml.safe_load(f)
-        gym.utils.EzPickle.__init__(self, model_path, obsd_model_path, seed, config, **kwargs)
+    def __init__(self, model_path=None, obsd_model_path=None, seed=None, cfg={}, **kwargs):
+        if isinstance(cfg, str):
+            with open(cfg, 'r') as f:
+                config = yaml.safe_load(f)
+        elif isinstance(cfg, dict):
+            config = cfg
+        else:
+            raise ValueError("cfg must be a dict or a path to a YAML file")
+        gym.utils.EzPickle.__init__(self, model_path, obsd_model_path, seed, **kwargs)
 
-        print(model_path)
+        # print(model_path)
 
         if model_path is None:
             model_path = os.path.join("myosuite", "envs", "myo", "assets", "kinova", "robot_arm", "kinova.xml")
 
-        print("==================")
+        # print("==================")
         self.cfg = config
-        print(self.cfg)
+        # print("init function: ", self.cfg)
         self.goal = self.sample_goal()
 
         
@@ -60,12 +65,21 @@ class KinovaArm(BaseV0):
         if seed is not None:
             self.seed(seed)
 
+        print("about to sample goal!")
         self.goal = self.sample_goal()
         return super().reset()
 
     def sample_goal(self):
         # sample a reachable 3D target in action space
         # return np.random.uniform(low=[0.9, 0, 1.8], high=[0.9, 0, 1.8])
+        if type(self.cfg) is str:
+            with open(self.cfg, 'r') as f:
+                self.cfg = yaml.safe_load(f)
+
+        # with open(self.cfg, 'r') as f:
+        #     config = yaml.safe_load(f)
+        #     return np.array(config["goal"])
+        # return np.array(self.cfg["goal"])
         return np.array(self.cfg["goal"])
 
     def get_achieved_goal(self):

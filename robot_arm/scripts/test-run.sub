@@ -5,10 +5,10 @@
 #SBATCH --mail-type=ALL                      # Request status by email 
 #SBATCH --mail-user=tty6@cornell.edu        # Email address to send results to.
 #SBATCH -N 1                                 # Total number of nodes requested
-#SBATCH -n 16                                 # Total number of cores requested
+#SBATCH -n 32                                 # Total number of cores requested
 #SBATCH --get-user-env                       # retrieve the users login environment
-#SBATCH --mem=16G                           # server memory requested (per node)
-#SBATCH -t 24:00:00                           # Time limit (hh:mm:ss)
+#SBATCH --mem=32g                           # server memory requested (per node)
+#SBATCH -t 72:00:00                           # Time limit (hh:mm:ss)
 #SBATCH --partition=gpu                     # Request partition
 #SBATCH --gres=gpu:1                        # Request gpu
 . /home/tty6/miniforge3/etc/profile.d/conda.sh
