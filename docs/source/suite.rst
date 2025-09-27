@@ -12,6 +12,8 @@ Models and tasks are the most important aspects of Myosuite. To provide further,
     * :ref:`myoHand`
     * :ref:`myoLeg`
     * :ref:`myoArm`
+    * :ref:`myoTorso`
+    * :ref:`myoArmNoHandMuscles`
 * :ref:`tasks`
 * :ref:`task_and_variations`
 
@@ -23,7 +25,7 @@ Models and tasks are the most important aspects of Myosuite. To provide further,
 Models
 ********
 
-MyoSuite consists of five models: :ref:`myoFinger`, :ref:`myoElbow`, :ref:`myoHand`, :ref:`myoArm` and :ref:`myoLeg`.
+MyoSuite consists of six models: :ref:`myoFinger`, :ref:`myoElbow`, :ref:`myoHand`, :ref:`myoArm`, :ref:`myoLeg`, :ref:`myoTorso` and :ref:`myoArmNoHandMuscles`.
 Using these models, we design a rich collection of tasks ranging across simple reaching movements,
 contact-rich movements involving object-manipulation such as pen-twirling and baoding balls, as well as locomotion behaviors.
 
@@ -192,6 +194,45 @@ Model specification can be found on our github repo of `myoArm <https://github.c
 .. image:: images/myoArm.png
   :height: 200
 
+
+
+.. _myoTorso:
+
+myoTorso
+==========
+The myoTorso mujoco musculoskeletal (MSK) model is generated from: Constrained Lumbar Spine model - 210 [https://simtk.org/projects/lumbarspine] from Opensim.
+
+This generated mujoco MSK model has almost identical kinematics, and very similar muscle kinematics (moment arms) and kinetic (forces) properties.
+
+The model have 210 actuators and 18 joints. Details of this model can be found on our github repo at `myoTorso <https://github.com/MyoHub/myo_sim/tree/main/torso>`__.
+
+
+ .. image:: images/MyoTorso.png
+  :height: 400
+
+========  =============================
+Acronym   Muscle
+========  =============================
+rect_abd  Rectus Adomininis
+IL        Iliocostalis
+QL        Quadratus Lumborum
+MF        Multifidus
+LT        Longissimus Thoracis
+EO        External Obliques
+IO        Internal Obliques
+========  =============================
+
+.. _myoArmNoHandMuscles:
+
+myoArmNoHandMuscles
+=========
+The myoArmNoHandMuscles is the myoArm with the extrinsic and intrinsic hand muscles removed, enabling the study of reaching tasks that have no grasp or object manipulation component. 
+
+This musculoskeletal model is comprised of 38 joints and 24 muscle-tendon units.
+
+.. image:: images/myoArm_NoHand.png
+  :height: 200
+
 .. _tasks:
 
 Tasks
@@ -326,6 +367,23 @@ Variants:
     - **More**: sparse rewards, dense rewards, random resets, reset free
 
 .. image:: images/hand_pen_twirl.png
+  :width: 200
+
+Arm Reach
+=====================
+
+
+Model:
+    - This environment uses a simplified version of the myoArm model in which the muscles and joints of the digits have been removed, enabling the study of reaching/pointing tasks that have no manipulation component. The simplified myoArm model is comprised of 20 joints and 32 muscle-tendon units.
+
+Objective:
+    - Reach a target with the tip of the index finger.
+
+Variants:
+    - **Easy**: Reach to a fixed target ``myoArmReachFixed-v0``
+    - **Hard**: Reach to a randomly selected target ``myoArmReachRandom-v0``
+
+.. image:: images/myoArmReach.png
   :width: 200
 
 Hand Multiobject Reorientation
@@ -550,3 +608,4 @@ Variations
   - **Sarcopenia**: myoSarc<Environment> e.g. myoSarcHandPoseFixed-v0
   - **Fatigue**: myoFati<Environment> e.g. myoFatiElbowPose1D6MRandom-v0
   - **TTransfer / Reafferentation**: myoReaf<Environment> e.g. myoReafHandPoseFixed-v0
+

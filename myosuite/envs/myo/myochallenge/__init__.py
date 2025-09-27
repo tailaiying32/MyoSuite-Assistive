@@ -30,6 +30,68 @@ def register_env_with_variants(id, entry_point, max_episode_steps, kwargs):
             silent=True
         )
 
+# ============================================== MyoChallenge 2025 envs ==============================================
+## MyoChallenge Locomotion P1 (Soccer)
+register_env_with_variants(id='myoChallengeSoccerP1-v0',
+        entry_point='myosuite.envs.myo.myochallenge.soccer_v0:SoccerEnvV0',
+        max_episode_steps=2000,
+        kwargs={
+            'model_path': curr_dir+'/../assets/leg_soccer/myolegs_soccer.xml',
+            'normalize_act': True,
+            'min_agent_spawn_distance': 1,
+            'reset_type': 'none', # none, init, random
+            'goalkeeper_probabilities': (0, 0, 1),
+        }
+    )
+
+register_env_with_variants(id='myoChallengeSoccerP2-v0',
+        entry_point='myosuite.envs.myo.myochallenge.soccer_v0:SoccerEnvV0',
+        max_episode_steps=2000,
+        kwargs={
+            'model_path': curr_dir+'/../assets/leg_soccer/myolegs_soccer.xml',
+            'normalize_act': True,
+            'min_agent_spawn_distance': 1,
+            'reset_type': 'random', # none, init, random
+            'goalkeeper_probabilities': (0, 0, 1),
+            'max_time_sec': 10,
+        }
+    )
+
+register_env_with_variants(id='myoChallengeTableTennisP0-v0',
+        entry_point='myosuite.envs.myo.myochallenge.tabletennis_v0:TableTennisEnvV0',
+        max_episode_steps=300,
+        kwargs={
+            'model_path': curr_dir + '/../assets/arm/myoarm_tabletennis.xml',
+            'normalize_act': True,
+            'frame_skip': 5,
+        }
+    )
+
+register_env_with_variants(id='myoChallengeTableTennisP1-v0',
+        entry_point='myosuite.envs.myo.myochallenge.tabletennis_v0:TableTennisEnvV0',
+        max_episode_steps=300,
+        kwargs={
+            'model_path': curr_dir + '/../assets/arm/myoarm_tabletennis.xml',
+            'normalize_act': True,
+            'ball_xyz_range': {'high':[-1.20, -0.45, 1.5], 'low':[-1.25, -0.5, 1.4]},
+            'frame_skip': 5,
+        }
+    )
+
+register_env_with_variants(id='myoChallengeTableTennisP2-v0',
+        entry_point='myosuite.envs.myo.myochallenge.tabletennis_v0:TableTennisEnvV0',
+        max_episode_steps=300,
+        kwargs={
+            'model_path': curr_dir + '/../assets/arm/myoarm_tabletennis.xml',
+            'normalize_act': True,
+            'ball_qvel': True, 
+            'paddle_mass_range': (0.10, 0.15),
+            'qpos_noise_range': None,
+            'ball_xyz_range': {'high':[-0.8, 0.5, 1.5], 'low':[-1.25, -0.5, 1.4]}, 
+            'ball_friction_range': { 'high': [1.1, 0.006, 0.00003], 'low': [0.9, 0.004, 0.00001]},
+            'frame_skip': 5,
+        }
+    )
 
 register_env_with_variants(id='myoChallengeBimanual-v0',
         entry_point='myosuite.envs.myo.myochallenge.bimanual_v0:BimanualEnvV1',
@@ -43,7 +105,6 @@ register_env_with_variants(id='myoChallengeBimanual-v0',
             'obj_friction_change': (0.1, 0.001, 0.00002)  # nominal: 1.0, 0.005, 0.0001
         }
     )
-
 
 # MyoChallenge 2024 envs ==============================================
 register_env_with_variants(id='myoChallengeOslRunFixed-v0',
