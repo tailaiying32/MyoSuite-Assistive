@@ -145,7 +145,7 @@ class ReachEnvV0(BaseV0):
             )
         )
         rwd_dict["dense"] = np.sum(
-            [wt * rwd_dict[key] for key, wt in self.rwd_keys_wt.items()], axis=0
+            [wt * rwd_dict[key] for key, wt in rwd_dict.items()], axis=0
         )
         return rwd_dict
 

@@ -127,7 +127,6 @@ class BaseV0(env_base.MujocoEnv):
                 )
             else:
                 pass
-        print("about to call super().reset!")
         return super().reset(*args, **kwargs)
 
     def set_fatigue_reset_random(self, fatigue_reset_random):  #

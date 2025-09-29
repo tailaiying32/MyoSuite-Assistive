@@ -1,2 +1,5 @@
-reward_scale: 2.0
+reward_scale: 1.0
 goal: [0.9, 0, 1.8]
+near_th: 0.0125
+far_th: 0.35
+time_th: 50

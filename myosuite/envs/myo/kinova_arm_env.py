@@ -9,9 +9,11 @@ import yaml
 class KinovaArm(BaseV0):
     DEFAULT_OBS_KEYS = ['qpos', 'qvel', 'time']
     DEFAULT_RWD_KEYS_AND_WEIGHTS = {
-        "sparse": 1.0,
-        "dense": 1.0,
+        "reach": 1.0,
+        "bonus": 4.0,
+        "penalty": 50,
     }
+
 
     def __init__(self, model_path=None, obsd_model_path=None, seed=None, cfg={}, **kwargs):
         if isinstance(cfg, str):
@@ -23,14 +25,10 @@ class KinovaArm(BaseV0):
             raise ValueError("cfg must be a dict or a path to a YAML file")
         gym.utils.EzPickle.__init__(self, model_path, obsd_model_path, seed, **kwargs)
 
-        # print(model_path)
-
         if model_path is None:
             model_path = os.path.join("myosuite", "envs", "myo", "assets", "kinova", "robot_arm", "kinova.xml")
 
-        # print("==================")
         self.cfg = config
-        # print("init function: ", self.cfg)
         self.goal = self.sample_goal()
 
         
@@ -65,21 +63,14 @@ class KinovaArm(BaseV0):
         if seed is not None:
             self.seed(seed)
 
-        print("about to sample goal!")
         self.goal = self.sample_goal()
         return super().reset()
 
     def sample_goal(self):
-        # sample a reachable 3D target in action space
-        # return np.random.uniform(low=[0.9, 0, 1.8], high=[0.9, 0, 1.8])
         if type(self.cfg) is str:
             with open(self.cfg, 'r') as f:
                 self.cfg = yaml.safe_load(f)
 
-        # with open(self.cfg, 'r') as f:
-        #     config = yaml.safe_load(f)
-        #     return np.array(config["goal"])
-        # return np.array(self.cfg["goal"])
         return np.array(self.cfg["goal"])
 
     def get_achieved_goal(self):
@@ -93,23 +84,42 @@ class KinovaArm(BaseV0):
         obs_dict["qvel"] = sim.data.qvel[:].copy() * self.dt
         if sim.model.na > 0:
             obs_dict["act"] = sim.data.act[:].copy()
-
+        
         # goal-conditioned additions
         obs_dict["desired_goal"] = self.goal.copy()
         obs_dict["achieved_goal"] = self.get_achieved_goal()
+        obs_dict["reach_err"] = np.array(obs_dict["achieved_goal"]) - np.array(obs_dict["desired_goal"])
         return obs_dict
 
     def get_reward_dict(self, obs_dict):   
         reach_dist = np.linalg.norm(obs_dict["achieved_goal"] - obs_dict["desired_goal"]) ** self.cfg["reward_scale"]
 
+        act_mag = (
+            np.linalg.norm(obs_dict["act"], axis=-1) / self.sim.model.na
+            if self.sim.model.na != 0 else 0
+        )
+
+        far_th = (
+            self.cfg["far_th"] if self.dt > self.cfg["time_th"] else np.inf
+        )
+
+        near_th = self.cfg["near_th"]
+
         rwd_dict = collections.OrderedDict((
-            ('reach_dist', -reach_dist),
-            ('dense', -reach_dist),  
-            ('sparse', 1.0 if reach_dist < 0.05 else 0.0),        
-            ('solved', float(reach_dist < 0.05)),      
-            ('done', 0.0), 
+            ('reach', -reach_dist),
+            ("bonus", 1.0 * (reach_dist < 2 * near_th) + 1.0 * (reach_dist < near_th)),
+            ("act_reg", -1.0 * act_mag),
+            ("penalty", -1.0 * (reach_dist > far_th)),
+            ('sparse', -1.0 * reach_dist),        
+            ('solved', float(reach_dist < near_th)),      
+            ('done', reach_dist > far_th), 
         ))
+        rwd_dict["dense"] = np.sum(
+            [wt * rwd_dict[key] for key, wt in self.rwd_keys_wt.items() 
+        if key in rwd_dict], axis=0
+        )
         return rwd_dict
+    
 
     # render environment    
     def render(self):

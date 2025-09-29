@@ -16,7 +16,7 @@ import mujoco
 curr_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Arm Reaching ==============================
-def edit_fn_arm_reaching(spec: mujoco.MjSpec) -> None:
+def edit_fn_arm_reaching(spec) -> None:
 
 	# Get the positions of each body of each digit
 	root_list = ['firstmc', 'secondmc', 'thirdmc', 'fourthmc', 'fifthmc']
